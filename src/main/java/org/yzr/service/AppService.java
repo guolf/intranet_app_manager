@@ -91,8 +91,8 @@ public class AppService {
         if (app != null) {
             this.appDao.deleteById(id);
             // 消除整个 APP 目录
-            String path = PathManager.getAppPath(app);
-            PathManager.deleteDirectory(path);
+            String path = pathManager.getAppPath(app);
+            pathManager.deleteDirectory(path);
         }
 
     }

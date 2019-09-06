@@ -49,7 +49,7 @@ public class AppViewModel {
         this.id = app.getId();
         this.platform = app.getPlatform();
         this.bundleID = app.getBundleID();
-        this.icon =  PathManager.getRelativePath(app.getCurrentPackage()) + "icon.png";
+        this.icon =  pathManager.getRelativePath(app.getCurrentPackage()) + "icon.png";
         Package aPackage = findPackageById(app, null);
         this.version = aPackage.getVersion();
         this.buildVersion = aPackage.getBuildVersion();
@@ -68,7 +68,7 @@ public class AppViewModel {
         this.id = app.getId();
         this.platform = app.getPlatform();
         this.bundleID = app.getBundleID();
-        this.icon =  PathManager.getRelativePath(app.getCurrentPackage()) + "icon.png";
+        this.icon = pathManager.getRelativePath(app.getCurrentPackage()) + "icon.png";
         Package aPackage = findPackageById(app, packageId);
         this.version = aPackage.getVersion();
         this.buildVersion = aPackage.getBuildVersion();

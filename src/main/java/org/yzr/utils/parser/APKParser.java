@@ -8,11 +8,11 @@ import org.yzr.model.Package;
 import org.yzr.utils.PathManager;
 
 import java.io.File;
-import java.util.UUID;
 
 public class APKParser implements PackageParser {
+
     @Override
-    public Package parse(String filePath) {
+    public Package parse(PathManager pathManager, String filePath) {
         try {
             File file = new File(filePath);
             if (!file.exists()) return null;
@@ -39,13 +39,13 @@ public class APKParser implements PackageParser {
             int iconCount = apkFile.getAllIcons().size();
             if (iconCount > 0) {
                 IconFace icon = apkFile.getAllIcons().get(iconCount - 1);
-                String iconPath = PathManager.getTempIconPath(aPackage);
+                String iconPath = pathManager.getTempIconPath(aPackage);
                 File iconFile = new File(iconPath);
                 FileUtils.writeByteArrayToFile(iconFile, icon.getData());
             }
             apkFile.close();
             return aPackage;
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         return null;

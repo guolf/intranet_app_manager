@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Stict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title class="ng-binding">登录</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.11.0.min.js}"></script>
+</head>
+<body class='page-sessions-new'>
+<div class="form-container">
+    <div class="form-behavior divider">
+        <span>登录</span>
+    </div>
+
+    <div class="form-inner">
+        <form class="form-float-label" id="new_user" action="/login" accept-charset="UTF-8" method="post">
+            <input name="utf8" type="hidden" value="✓">
+            <input type="hidden" id="user" value="">
+            <div class="form-group">
+                <input class="form-control" autofocus="autofocus" placeholder="账号" required="required"
+                       name="user[email]" type="text" id="loginName">
+                <span class="float-label"><i class="icon-email"></i></span>
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" autocomplete="off" placeholder="密码" required="required" type="password"
+                       name="user[password]" id="password">
+                <span class="float-label"><i class="icon-lock"></i></span>
+            </div>
+
+            <div class="form-group action">
+                <button id="btnLogin" type="button" class="btn btn-block btn-primary">登录</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="application/javascript">
+    $(function () {
+        $("#btnLogin").click(function () {
+            $.post("/login", {
+                loginName: $("#loginName").val(),
+                password: $("#password").val()
+            }, function (result) {
+                if (result.success) {
+                    window.location.href = "/";
+                }
+            })
+        })
+    });
+</script>
+</body>
+</html>

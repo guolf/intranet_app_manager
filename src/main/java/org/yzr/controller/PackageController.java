@@ -115,7 +115,7 @@ public class PackageController {
     public void download(@PathVariable("id") String id, HttpServletResponse response) {
         try {
             Package aPackage = this.packageService.get(id);
-            String path = PathManager.getFullPath(aPackage) + aPackage.getFileName();
+            String path = pathManager.getFullPath(aPackage) + aPackage.getFileName();
             File file = new File(path);
             if(file.exists()){ //判断文件父目录是否存在
                 response.setContentType("application/force-download");

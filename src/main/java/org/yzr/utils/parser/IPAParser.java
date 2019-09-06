@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class IPAParser implements PackageParser {
     @Override
-    public Package parse(String filePath) {
+    public Package parse(PathManager pathManager, String filePath) {
         try {
             Package aPackage = new Package();
             // 解压 IPA 包
@@ -52,7 +52,7 @@ public class IPAParser implements PackageParser {
                 iconName = infoPlist.stringValueForKeyPath("CFBundleIconFile");
             }
             String iconPath = appIcon(appPath, iconName);
-            String iconTempPath = PathManager.getTempIconPath(aPackage);
+            String iconTempPath = pathManager.getTempIconPath(aPackage);
             PNGConverter.convert(iconPath, iconTempPath);
 
             // 解析 Provision

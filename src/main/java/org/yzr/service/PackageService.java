@@ -29,14 +29,14 @@ public class PackageService {
     private PathManager pathManager;
 
     public Package buildPackage(String filePath) {
-        Package aPackage = ParserClient.parse(filePath);
+        Package aPackage = ParserClient.parse(pathManager, filePath);
         try {
             String fileName = aPackage.getPlatform() + "." + FilenameUtils.getExtension(filePath);
             // 更新文件名
             aPackage.setFileName(fileName);
 
-            String packagePath = PathManager.getFullPath(aPackage);
-            String tempIconPath = PathManager.getTempIconPath(aPackage);
+            String packagePath = pathManager.getFullPath(aPackage);
+            String tempIconPath = pathManager.getTempIconPath(aPackage);
             String iconPath = packagePath + File.separator + "icon.png";
             String sourcePath = packagePath + File.separator + fileName;
             String jpgIconPath = packagePath + File.separator + "icon.jpg";
@@ -81,8 +81,8 @@ public class PackageService {
         Package aPackage = this.packageDao.findById(id).get();
         if (aPackage != null) {
             this.packageDao.deleteById(id);
-            String path = PathManager.getFullPath(aPackage);
-            PathManager.deleteDirectory(path);
+            String path = pathManager.getFullPath(aPackage);
+            pathManager.deleteDirectory(path);
         }
 
     }

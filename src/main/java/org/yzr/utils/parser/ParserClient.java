@@ -2,6 +2,7 @@ package org.yzr.utils.parser;
 
 import org.apache.commons.io.FilenameUtils;
 import org.yzr.model.Package;
+import org.yzr.utils.PathManager;
 
 public class ParserClient {
 
@@ -10,10 +11,10 @@ public class ParserClient {
      * @param filePath 文件路径
      * @return
      */
-    public static Package parse(String filePath) {
+    public static Package parse(PathManager pathManager, String filePath) {
         PackageParser parser = getParser(filePath);
         if (parser != null) {
-            return parser.parse(filePath);
+            return parser.parse(pathManager,filePath);
         }
         return null;
     }
